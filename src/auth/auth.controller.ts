@@ -16,6 +16,6 @@ export class AuthController {
       httpOnly: true,
       secure: true, // Ensure this is only true in production
     });
-    return res.redirect('/');
+    return res.redirect('https://google.com');
   }
 }
