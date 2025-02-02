@@ -1,21 +1,17 @@
-import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
   @Get('google')
   @UseGuards(AuthGuard('google'))
-  async googleAuth() {}
+  async googleAuth(@Req() req) {
+    // بدء المصادقة مع Google
+  }
 
   @Get('google/callback')
   @UseGuards(AuthGuard('google'))
-  async googleAuthRedirect(@Req() req, @Res() res: Response) {
-    const { accessToken } = req.user;
-    res.cookie('jwt', accessToken, {
-      httpOnly: true,
-      secure: true, // Ensure this is only true in production
-    });
-    return res.redirect('https://google.com');
+  async googleAuthRedirect(@Req() req) {
+    return req.user;
   }
 }
