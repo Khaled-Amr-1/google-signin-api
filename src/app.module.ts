@@ -11,11 +11,7 @@ import { User } from './users/user.entity';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        host: configService.get('DATABASE_HOST'),
-        port: configService.get('DATABASE_PORT'),
-        username: configService.get('DATABASE_USER'),
-        password: configService.get('DATABASE_PASSWORD'),
-        database: configService.get('DATABASE_NAME'),
+        url: configService.get('postgresql://postgres:[tbb.P0litiK$niper]@db.fbsohdsunkuykbpsqgij.supabase.co:5432/postgres'),
         entities: [User],
         synchronize: true,
       }),
